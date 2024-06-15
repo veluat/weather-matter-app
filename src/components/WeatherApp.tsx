@@ -1,112 +1,148 @@
 import React, {useEffect, useState} from 'react';
 import s from './WeatherApp.module.scss';
-import search_icon from './../assets/search.png';
-import cloud_icon from './../assets/cloud.png';
-import wind_icon from './../assets/wind.png';
-import humidity_icon from './../assets/humidity.png';
-import clear_icon from './../assets/clear.png';
-import drizzle_icon from './../assets/drizzle.png';
-import snow_icon from './../assets/snow.png';
-import rain_icon from './../assets/rain.png';
+import search_icon from '../assets/search.png';
+import cloud_icon from '../assets/cloud.png';
+import wind_icon from '../assets/wind.png';
+import humidity_icon from '../assets/humidity.png';
+import clear_icon from '../assets/clear.png';
+import drizzle_icon from '../assets/drizzle.png';
+import snow_icon from '../assets/snow.png';
+import rain_icon from '../assets/rain.png';
 
 type ResponseWeatherDataType = {
-    main: {
-        temp: number;
-        humidity: number;
-    }
-    wind: {
-        speed: number;
-    }
-    name: string;
-    weather: {
-        icon: string
-    }
-}
+  main: {
+    temp: number;
+    humidity: number;
+  };
+  wind: {
+    speed: number;
+  };
+  name: string;
+  weather: {
+    icon: string;
+  }[];
+};
 
 export const WeatherApp: React.FC = () => {
-    let api_key = process.env.REACT_APP_API_KEY;
-    const [weatherIcon, setWeatherIcon] = useState('');
-    const [humidity, setHumidity] = useState('');
-    const [wind, setWind] = useState('');
-    const [temperature, setTemperature] = useState('');
-    const [location, setLocation] = useState('Minsk');
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const [weatherData, setWeatherData] = useState<ResponseWeatherDataType | null>(null);
+  const [location, setLocation] = useState('Minsk');
+  const [error, setError] = useState<string | null>(null);
 
-    const search = async () => {
-        if (location === '') {
-            return;
-        }
+  const fetchWeatherData = async () => {
+    try {
+      if (location.trim() === '') {
+        setError('Please enter a location.');
+        return;
+      }
 
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=Metric&appid=${api_key}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=Metric&appid=${apiKey}`;
+      const response = await fetch(url);
 
-        let response = await fetch(url);
-        let data: ResponseWeatherDataType = await response.json();
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(`Error: ${errorData.message}`);
+        return;
+      }
 
-        setHumidity(data.main.humidity.toString());
-        setWind(Math.floor(data.wind.speed).toString());
-        setTemperature(Math.floor(data.main.temp).toString());
-        setLocation(data.name);
-
-        if (data.weather.icon === '01d' || data.weather.icon === '01n') {
-            setWeatherIcon(clear_icon)
-        } else if (data.weather.icon === '02d' || data.weather.icon === '02n') {
-            setWeatherIcon(cloud_icon)
-        } else if (data.weather.icon === '03d' || data.weather.icon === '03n') {
-            setWeatherIcon(drizzle_icon)
-        } else if (data.weather.icon === '04d' || data.weather.icon === '04n') {
-            setWeatherIcon(drizzle_icon)
-        } else if (data.weather.icon === '09d' || data.weather.icon === '09n') {
-            setWeatherIcon(rain_icon)
-        } else if (data.weather.icon === '10d' || data.weather.icon === '10n') {
-            setWeatherIcon(rain_icon)
-        } else if (data.weather.icon === '13d' || data.weather.icon === '13n') {
-            setWeatherIcon(snow_icon)
-        } else {
-            setWeatherIcon(clear_icon)
+      const data: ResponseWeatherDataType = await response.json();
+      setWeatherData(data);
+      setError(null);
+    } catch (error) {
+      if (!apiKey) {
+        setError('API key is missing. Please set the REACT_APP_API_KEY environment variable.');
+        return;
+      }
+      setError('An error occurred while fetching weather data.');
     }
-};
-        const fetchData = async () => {
-            await search();
-        };
+  };
 
-        useEffect(() => {
-            fetchData();
-        }, []);
+  useEffect(() => {
+    fetchWeatherData();
+  }, []);
 
-return (
+  if (!weatherData) {
+    return (
+      <div className={s.container}>
+        {error ? (
+          <div className={s.errorMessage}>{error}</div>
+        ) : (
+          <div className={s.loadingMessage}>Loading...</div>
+        )}
+      </div>
+    );
+  }
+
+  const {main, wind, name, weather} = weatherData;
+  const {temp, humidity} = main;
+  const {speed} = wind;
+  const [{icon}] = weather;
+
+  let weatherIconSrc;
+  switch (icon) {
+    case '01d':
+    case '01n':
+      weatherIconSrc = clear_icon;
+      break;
+    case '02d':
+    case '02n':
+      weatherIconSrc = cloud_icon;
+      break;
+    case '03d':
+    case '03n':
+    case '04d':
+    case '04n':
+      weatherIconSrc = drizzle_icon;
+      break;
+    case '09d':
+    case '09n':
+    case '10d':
+    case '10n':
+      weatherIconSrc = rain_icon;
+      break;
+    case '13d':
+    case '13n':
+      weatherIconSrc = snow_icon;
+      break;
+    default:
+      weatherIconSrc = clear_icon;
+  }
+
+  return (
     <div className={s.container}>
-        <div className={s.topBar}>
-            <input
-                type="text"
-                className={s.cityInput}
-                placeholder="Search"
-                onChange={(event) => setLocation(event.currentTarget.value)}
-            />
-            <div className={s.seachIcon} onClick={search}>
-                <img src={search_icon} alt="search"/>
-            </div>
+      <div className={s.topBar}>
+        <input
+          type="text"
+          className={s.cityInput}
+          placeholder="Search"
+          value={location}
+          onChange={(event) => setLocation(event.currentTarget.value)}
+        />
+        <div className={s.seachIcon} onClick={fetchWeatherData}>
+          <img src={search_icon} alt="search"/>
         </div>
-        <div className={s.weatherImage}>
-            <img src={weatherIcon} alt="weather"/>
+      </div>
+      <div className={s.weatherImage}>
+        <img src={weatherIconSrc} alt="weather"/>
+      </div>
+      <div className={s.weatherTemp}>{Math.round(temp)} °C</div>
+      <div className={s.weatherLocation}>{name}</div>
+      <div className={s.dataContainer}>
+        <div className={s.element}>
+          <img src={humidity_icon} alt="humidity" className={s.icon}/>
+          <div className={s.data}>
+            <div className={s.humidityPercent}>{humidity} %</div>
+            <div className={s.text}>Humidity</div>
+          </div>
         </div>
-        <div className={s.weatherTemp}>{temperature} °C</div>
-        <div className={s.weatherLocation}>{location}</div>
-        <div className={s.dataContainer}>
-            <div className={s.element}>
-                <img src={humidity_icon} alt="humidity" className={s.icon}/>
-                <div className={s.data}>
-                    <div className={s.humidityPercent}>{humidity} %</div>
-                    <div className={s.text}>Humidity</div>
-                </div>
-            </div>
-            <div className={s.element}>
-                <img src={wind_icon} alt="wind" className={s.icon}/>
-                <div className={s.data}>
-                    <div className={s.windRate}>{wind} km/h</div>
-                    <div className={s.text}>Wind Speed</div>
-                </div>
-            </div>
+        <div className={s.element}>
+          <img src={wind_icon} alt="wind" className={s.icon}/>
+          <div className={s.data}>
+            <div className={s.windRate}>{Math.round(speed)} km/h</div>
+            <div className={s.text}>Wind Speed</div>
+          </div>
         </div>
+      </div>
     </div>
-);
-}
-;
+  );
+};
