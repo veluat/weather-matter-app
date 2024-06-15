@@ -59,7 +59,7 @@ export const WeatherApp: React.FC = () => {
 
   useEffect(() => {
     fetchWeatherData();
-  }, []);
+  }, [fetchWeatherData]);
 
   if (!weatherData) {
     return (
