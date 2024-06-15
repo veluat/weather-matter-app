@@ -8,58 +8,22 @@ import clear_icon from '../assets/clear.png';
 import drizzle_icon from '../assets/drizzle.png';
 import snow_icon from '../assets/snow.png';
 import rain_icon from '../assets/rain.png';
-
-type ResponseWeatherDataType = {
-  main: {
-    temp: number;
-    humidity: number;
-  };
-  wind: {
-    speed: number;
-  };
-  name: string;
-  weather: {
-    icon: string;
-  }[];
-};
+import useWeatherData from "../hook/useWeatherData";
 
 export const WeatherApp: React.FC = () => {
-  const apiKey = process.env.REACT_APP_API_KEY;
-  const [weatherData, setWeatherData] = useState<ResponseWeatherDataType | null>(null);
   const [location, setLocation] = useState('Minsk');
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchWeatherData = async () => {
-    try {
-      if (location.trim() === '') {
-        setError('Please enter a location.');
-        return;
-      }
-
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=Metric&appid=${apiKey}`;
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        setError(`Error: ${errorData.message}`);
-        return;
-      }
-
-      const data: ResponseWeatherDataType = await response.json();
-      setWeatherData(data);
-      setError(null);
-    } catch (error) {
-      if (!apiKey) {
-        setError('API key is missing. Please set the REACT_APP_API_KEY environment variable.');
-        return;
-      }
-      setError('An error occurred while fetching weather data.');
-    }
-  };
+  const { weatherData, error, fetchWeatherData } = useWeatherData();
 
   useEffect(() => {
-    fetchWeatherData();
-  }, [fetchWeatherData]);
+    const fetchData = async () => {
+      await fetchWeatherData(location);
+    };
+    void fetchData();
+  }, [fetchWeatherData, location]);
+
+  const handleSearch = async () => {
+    await fetchWeatherData(location);
+  };
 
   if (!weatherData) {
     return (
@@ -118,7 +82,7 @@ export const WeatherApp: React.FC = () => {
           value={location}
           onChange={(event) => setLocation(event.currentTarget.value)}
         />
-        <div className={s.seachIcon} onClick={fetchWeatherData}>
+        <div className={s.seachIcon} onClick={handleSearch}>
           <img src={search_icon} alt="search"/>
         </div>
       </div>
