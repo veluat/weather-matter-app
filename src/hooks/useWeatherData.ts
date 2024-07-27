@@ -1,6 +1,6 @@
-import {useState} from "react";
+import {useCallback, useState} from 'react'
 
-type ResponseWeatherDataType = {
+export type ResponseWeatherDataType = {
   main: {
     temp: number;
     humidity: number;
@@ -11,7 +11,7 @@ type ResponseWeatherDataType = {
   name: string;
   weather: {
     icon: string;
-  }[];
+  };
 };
 const useWeatherData = () => {
   const [error, setError] = useState<string | null>(null);
@@ -19,7 +19,7 @@ const useWeatherData = () => {
   const [weatherData, setWeatherData] = useState<ResponseWeatherDataType | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchWeatherData = async (location: string) => {
+  const fetchWeatherData = useCallback(async (location: string) => {
     try {
       if (location.toString().trim() === '') {
         setError('Please enter a location.');
@@ -31,7 +31,12 @@ const useWeatherData = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        setError(`Error: ${errorData.message}`);
+        if (errorData.cod === '404') {
+          setError('Please enter a valid location.');
+        } else {
+        setError('Please try again a little later.');
+        }
+        console.error(errorData.error)
         setIsLoading(false);
         return;
       }
@@ -42,14 +47,15 @@ const useWeatherData = () => {
       setIsLoading(false);
     } catch (error) {
       if (!apiKey) {
-        setError('API key is missing. Please set the REACT_APP_API_KEY environment variable.');
+        setError('Please try again a little later.');
+        console.error('API key is missing. Please set the REACT_APP_API_KEY environment variable.')
         setIsLoading(false);
         return;
       }
-      setError('An error occurred while fetching weather data.');
+      setError('Please try again a little later.');
       setIsLoading(false);
     }
-  };
+  }, [apiKey]);
 
   return {weatherData, error, fetchWeatherData, isLoading}
 }
