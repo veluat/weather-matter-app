@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './WindSpeed.module.scss'
-import wind_icon from './../../../assets/wind.png'
+import wind_icon from '../../../../assets/wind.png'
 
 type Props = {
   speed: number

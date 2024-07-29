@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './SearchBar.module.scss'
-import search_icon from '../../assets/search.png'
+import search_icon from '../../../assets/search.png'
 
 type Props = {
   value: string
@@ -19,9 +19,9 @@ export const SearchBar: React.FC<Props> = ({value, handleInputChange, handleSear
         onChange={handleInputChange}
         onKeyDown={onKeyDown}
       />
-      <div className={s.searchIcon} onClick={handleSearch}>
-        <img src={search_icon} alt='search'/>
-      </div>
+      <button className={s.searchIcon} onClick={handleSearch}>
+        <img src={search_icon} alt='search' className={s.img}/>
+      </button>
     </div>
   )
 }

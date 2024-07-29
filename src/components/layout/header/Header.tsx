@@ -1,17 +1,18 @@
-import React from 'react'
-import settings_img from '../../assets/settings.png'
+import React, {useContext, useState} from 'react'
 import s from './Header.module.scss'
-import {LoadingIndicator} from '../loading-indicator'
-import {ErrorMessage} from '../error-message'
+import {LoadingIndicator} from '../../shared/loading-indicator'
+import {ErrorMessage} from '../../shared/error-message'
+import {Settings} from '../../shared/settings'
 
 type Props = {
   isLoading: boolean
   error: string | null
 }
 export const Header: React.FC<Props> = ({isLoading, error}) => {
+
   return (
     <div className={s.root}>
-      <img src={settings_img} alt={'settings icon'} className={s.img}/>
+      <Settings/>
       {isLoading && <LoadingIndicator/>}
       {!isLoading && error && <ErrorMessage message={error}/>}
       <div className={s.timeBox}>

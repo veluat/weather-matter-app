@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './Humidity.module.scss'
-import humidity_icon from './../../../assets/humidity.png'
+import humidity_icon from '../../../../assets/humidity.png'
 
 type Props = {
   humidity: number

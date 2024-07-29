@@ -1,8 +1,8 @@
 .dataContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   color: white;
+  width: 100%;
 
   .weatherTemp {
     display: flex;
@@ -15,7 +15,7 @@
   .weatherLocation {
     display: flex;
     justify-content: center;
-    color: white;
+    color: #ffff00;
     font-size: 40px;
     font-weight: 400;
   }
@@ -25,5 +25,6 @@
     justify-content: space-around;
     align-items: flex-end;
     margin-top: 25px;
+    width: 100%;
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './WeatherImage.module.scss'
-import {useWeatherIconSrc} from '../../hooks'
+import {useWeatherIconSrc} from '../../../hooks'
 
 type Props = {
   icon: string

@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import s from './WeatherApp.module.scss'
-import useWeatherData from '../../hooks/useWeatherData'
+import useWeatherData from '../../../hooks/useWeatherData'
 import {LoadingIndicator} from '../loading-indicator'
-import {SearchBar} from '../search-bar'
-import {Header} from '../header'
-import {WeatherInfo} from '../weather-info'
+import {Header} from '../../layout/header'
 import {ErrorMessage} from '../error-message'
-import {HourlyWeather} from '../hourly-weather'
-import {SevenDays} from '../seven-days'
+import {Layout} from '../../layout/layout'
+import {Footer} from '../../layout/footer'
 
 export const WeatherApp: React.FC = () => {
   const [location, setLocation] = useState('')
@@ -59,16 +57,12 @@ export const WeatherApp: React.FC = () => {
   return (
     <div className={s.root}>
       <Header isLoading={isLoading} error={error}/>
-
-      <SearchBar value={location}
-                 handleInputChange={handleInputChange}
-                 handleSearch={handleSearch}
-                 onKeyDown={handleKeyDown}/>
-      <WeatherInfo weatherData={weatherData}/>
-      <div className={s.block}>
-        <HourlyWeather/>
-        <SevenDays/>
-      </div>
+      <Layout location={location}
+              handleInputChange={handleInputChange}
+              handleSearch={handleSearch}
+              handleKeyDown={handleKeyDown}
+              weatherData={weatherData}/>
+      <Footer/>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import s from './WeatherInfo.module.scss'
 import {Humidity} from './humidity'
 import {WindSpeed} from './wind-speed'
-import {ResponseWeatherDataType} from '../../hooks'
+import {ResponseWeatherDataType} from '../../../hooks'
 import {WeatherImage} from '../weather-image'
 
 type Props = {
