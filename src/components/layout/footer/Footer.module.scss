@@ -1,0 +1,43 @@
+@import '../../../styles/mixins';
+
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+
+  .dataSource {
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+
+    a {
+      text-decoration: none;
+      color: #ffff00;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .feedback {
+    all: unset;
+
+    width: 100%;
+    max-width: 200px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 40px;
+    font-size: 25px;
+    font-weight: 400;
+    border: 2px solid white;
+    color: #ffff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2px;
+    cursor: pointer;
+  }
+}
