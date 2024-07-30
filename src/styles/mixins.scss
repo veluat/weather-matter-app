@@ -1,3 +1,12 @@
+@import './variable';
+
+@mixin container {
+  max-width: 1140px;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+
 @mixin element {
 
   .element {
@@ -20,11 +29,12 @@
     .text {
       font-size: 20px;
       font-weight: 400;
+      color: $accent-color;
     }
   }
 }
 
-@mixin details($width: 240px, $height: 160px) {
+@mixin details($width: 500px, $height: 250px) {
   width: 100%;
   max-width: $width;
   height: 100%;
@@ -32,9 +42,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  border: 2px solid white;
+  color: $accent-color;
+  border: 2px solid $primary-color;
   border-radius: 40px;
-  margin-top: 25px;
   text-align: center;
+  padding: 0 50px;
+}
+
+@mixin button {
+  all: unset;
+
+  width: 100%;
+  max-width: 200px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 40px;
+  font-size: 25px;
+  font-weight: 400;
+  border: 2px solid $primary-color;
+  color: $accent-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2px;
+  cursor: pointer;
+
+  &:focus, &:hover {
+    outline: 2px solid $primary-color;
+    transition: $transition;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 0.5);
+  }
 }

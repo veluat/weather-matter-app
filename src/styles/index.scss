@@ -1,4 +1,12 @@
-*, *::before, *::after {
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -8,8 +16,8 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
+  overflow-x: hidden;
   width: 100%;
   background-image: linear-gradient(180deg, #93cdd0 0%, #1da49d 100%);
-
+  background-size: cover;
 }
