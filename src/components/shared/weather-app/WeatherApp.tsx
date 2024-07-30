@@ -8,6 +8,7 @@ import {Layout} from '../../layout/layout'
 import {Footer} from '../../layout/footer'
 
 export const WeatherApp: React.FC = () => {
+
   const [location, setLocation] = useState('')
   const {weatherData, error, fetchWeatherData, isLoading} = useWeatherData()
 
