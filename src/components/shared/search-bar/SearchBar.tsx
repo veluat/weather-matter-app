@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import s from './SearchBar.module.scss'
 import search_icon from '../../../assets/search.png'
+import {LocaleContext} from '../../../utils'
+import data from './../../../data/ui-common-data/UiCommonData'
 
 type Props = {
   value: string
@@ -9,12 +11,14 @@ type Props = {
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 export const SearchBar: React.FC<Props> = ({value, handleInputChange, handleSearch, onKeyDown}) => {
+  const {locale} = useContext(LocaleContext)
+
   return (
     <div className={s.topBar}>
       <input
         type='text'
         className={s.cityInput}
-        placeholder='Search'
+        placeholder={data[locale].search}
         value={value}
         onChange={handleInputChange}
         onKeyDown={onKeyDown}
