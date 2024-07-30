@@ -1,4 +1,6 @@
-import {useCallback, useState} from 'react'
+import {useCallback, useContext, useState} from 'react'
+import {LocaleContext} from '../utils'
+import {ErrorsData} from '../data'
 
 export type ResponseWeatherDataType = {
   main: {
@@ -18,11 +20,12 @@ const useWeatherData = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
   const [weatherData, setWeatherData] = useState<ResponseWeatherDataType | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const {locale} = useContext(LocaleContext)
 
   const fetchWeatherData = useCallback(async (location: string) => {
     try {
       if (location.toString().trim() === '') {
-        setError('Please enter a location.');
+        setError(ErrorsData[locale].location);
         return;
       }
       setIsLoading(true);
@@ -32,9 +35,9 @@ const useWeatherData = () => {
       if (!response.ok) {
         const errorData = await response.json();
         if (errorData.cod === '404') {
-          setError('Please enter a valid location.');
+          setError(ErrorsData[locale].mistake);
         } else {
-        setError('Please try again a little later.');
+        setError(ErrorsData[locale].try);
         }
         console.error(errorData.error)
         setIsLoading(false);
@@ -47,15 +50,15 @@ const useWeatherData = () => {
       setIsLoading(false);
     } catch (error) {
       if (!apiKey) {
-        setError('Please try again a little later.');
+        setError(ErrorsData[locale].try);
         console.error('API key is missing. Please set the REACT_APP_API_KEY environment variable.')
         setIsLoading(false);
         return;
       }
-      setError('Please try again a little later.');
+      setError(ErrorsData[locale].try);
       setIsLoading(false);
     }
-  }, [apiKey]);
+  }, [apiKey, locale]);
 
   return {weatherData, error, fetchWeatherData, isLoading}
 }
