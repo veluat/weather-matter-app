@@ -1,11 +1,16 @@
-@import '../../../styles/mixins';
+@import './../../../styles/variable';
+@import './../../../styles/mixins';
 
 .root {
+  @include container();
+
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 25px;
+  margin: 25px 0 10px;
+  border-top: 1px solid $primary-color;
 
   .dataSource {
     font-size: 20px;
@@ -23,21 +28,7 @@
   }
 
   .feedback {
-    all: unset;
-
-    width: 100%;
-    max-width: 200px;
-    height: 50px;
-    background-color: transparent;
-    border-radius: 40px;
-    font-size: 25px;
-    font-weight: 400;
-    border: 2px solid white;
-    color: #ffff00;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 2px;
-    cursor: pointer;
+    @include button();
+    margin-top: 10px;
   }
 }
