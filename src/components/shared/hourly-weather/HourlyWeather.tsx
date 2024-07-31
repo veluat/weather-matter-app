@@ -8,7 +8,7 @@ const {locale} = useContext(LocaleContext)
 
   return (
     <div className={s.root}>
-      <h3>{data[locale].hourly}
+      <h3>{data[locale].hourlyDetails}
         <br/>
         {data[locale].dev}</h3>
     </div>

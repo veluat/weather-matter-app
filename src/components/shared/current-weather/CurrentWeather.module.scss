@@ -1,0 +1,30 @@
+@import '../../../styles/variable';
+
+.weatherTemp {
+  display: flex;
+  justify-content: center;
+  color: $primary-color;
+  gap: 5px;
+  font-size: 100px;
+  font-weight: 400;
+
+  img {
+    height: 72px;
+  }
+}
+
+.weatherLocation {
+  display: flex;
+  justify-content: center;
+  color: $accent-color;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.iconDataContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-top: 25px;
+  width: 100%;
+}

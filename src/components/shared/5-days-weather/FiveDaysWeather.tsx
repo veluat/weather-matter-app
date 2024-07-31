@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
-import s from './SevenDays.module.scss'
+import s from './FiveDaysWeather.module.scss'
 import data from './../../../data/ui-common-data/UiCommonData'
 import {LocaleContext} from '../../../utils'
 
-export const SevenDays = () => {
+export const FiveDaysWeather = () => {
   const {locale} = useContext(LocaleContext)
 
   return (
