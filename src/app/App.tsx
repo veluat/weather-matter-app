@@ -4,17 +4,21 @@ import s from './App.module.scss'
 import {LocaleProvider} from '../utils'
 import {ThemeProvider} from '../utils'
 import {LanguageHandler} from './LanguageHandler'
+import {store} from './store'
+import {Provider} from 'react-redux'
 
 function App() {
   return (
-    <LocaleProvider>
-      <LanguageHandler />
-      <ThemeProvider>
-        <div className={s.app}>
-          <WeatherApp/>
-        </div>
-      </ThemeProvider>
-    </LocaleProvider>
+    <Provider store={store}>
+      <LocaleProvider>
+        <LanguageHandler/>
+        <ThemeProvider>
+          <div className={s.app}>
+            <WeatherApp/>
+          </div>
+        </ThemeProvider>
+      </LocaleProvider>
+    </Provider>
   )
 }
 

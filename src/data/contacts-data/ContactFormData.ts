@@ -33,10 +33,10 @@ export const ContactFormData: ContactFormDataType = {
     sending: 'Отправить',
     sendingOK: 'Спасибо за ваш интерес! Я свяжусь с вами как можно скорее',
     sendingFAIL: 'Сообщение не отправлено. Пожалуйста, свяжитесь другим способом.',
-    errorsName: 'Поле обязательно для заполнения',
-    errorsEmail: 'Поле обязательно для заполнения',
+    errorsName: 'Введите имя',
+    errorsEmail: 'Введите Email',
     errorsEmailInvalid: 'Неверный адрес электронной почты',
-    errorsSubject: 'Поле обязательно для заполнения',
-    errorsMessage: 'Поле обязательно для заполнения',
+    errorsSubject: 'Введите тему',
+    errorsMessage: 'Введите текст',
   }
 }

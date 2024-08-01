@@ -1,7 +1,7 @@
 import {ContactForm} from '../contact-form'
 import s from './Modal.module.scss'
 import React from 'react'
-import {SettingsContent} from '../settings-contant'
+import {SettingsContent} from '../settings-content'
 import {CloseButton} from '../close-button'
 
 type ModalProps = {

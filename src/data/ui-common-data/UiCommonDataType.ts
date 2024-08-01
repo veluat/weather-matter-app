@@ -4,11 +4,14 @@ type UiCommonDataEntry = {
   humidity: string,
   wind: string,
   speed: string,
-  hourly: string,
+  hourlyDetails: string,
   next: string,
   feedback: string,
   footer: string,
-  dev: string
+  dev: string,
+  current: string,
+  hourly: string,
+  fiveDay: string,
 };
 
 export type UiCommonDataType = {

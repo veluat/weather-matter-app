@@ -7,11 +7,14 @@ const UiCommonData: UiCommonDataType = {
     humidity: 'Humidity',
     wind: 'Wind Speed',
     speed: 'km/h',
-    hourly: 'Hourly Weather Details',
-    next: 'Next 10 days',
+    hourlyDetails: 'Hourly Weather Details',
+    next: 'Next 5 days',
     feedback: 'Feedback',
     footer: 'Data provided by ',
-    dev: 'Coming Soon'
+    dev: 'Coming Soon',
+    current: 'Current Weather',
+    hourly: 'Hourly Forecast',
+    fiveDay: '5-Day Forecast',
   },
   ru: {
     time: 'Мировое время',
@@ -19,11 +22,14 @@ const UiCommonData: UiCommonDataType = {
     humidity: 'Влажность',
     wind: 'Скорость ветра',
     speed: 'км/ч',
-    hourly: 'Почасовой прогноз',
-    next: 'Прогноз на 10 дней',
+    hourlyDetails: 'Почасовой прогноз',
+    next: 'Прогноз на 5 дней',
     feedback: 'Обратная связь',
     footer: 'Данные получены из ',
-    dev: 'В разработке'
+    dev: 'В разработке',
+    current: 'Текущий прогноз',
+    hourly: 'Почасовой прогноз',
+    fiveDay: '5-Day Forecast',
   }
 }
 

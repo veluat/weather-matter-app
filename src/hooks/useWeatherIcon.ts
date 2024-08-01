@@ -1,42 +1,53 @@
-import clear_icon from '../assets/weather/clear.png'
-import cloud_icon from '../assets/weather/cloud.png'
-import drizzle_icon from '../assets/weather/drizzle.png'
-import rain_icon from '../assets/weather/rain.png'
-import snow_icon from '../assets/weather/snow.png'
+import clear_sky from '../assets/weather/clear_sky.png'
+import few_clouds from '../assets/weather/few_clouds.png'
+import scattered_clouds from '../assets/weather/scattered_clouds.png'
+import overcast_clouds from '../assets/weather/broken_clouds.png'
+import mist from '../assets/weather/mist.png'
+import rain from '../assets/weather/rain.png'
+import shower_rain from '../assets/weather/shower_rain.png'
+import snow from '../assets/weather/snow.png'
+import thunderstorm from '../assets/weather/thunderstorm.png'
 
 type Props = {
   icon: string
 }
 
-export const useWeatherIconSrc = ({ icon }: Props): string => {
+export const useWeatherIcon = ({ icon }: Props): string => {
   let weatherIconSrc: string;
   switch (icon) {
     case '01d':
     case '01n':
-      weatherIconSrc = clear_icon;
+      weatherIconSrc = clear_sky;
       break;
     case '02d':
     case '02n':
-      weatherIconSrc = cloud_icon;
+      weatherIconSrc = few_clouds;
       break;
     case '03d':
     case '03n':
+      weatherIconSrc = scattered_clouds;
+      break;
     case '04d':
     case '04n':
-      weatherIconSrc = drizzle_icon;
+      weatherIconSrc = overcast_clouds;
       break;
     case '09d':
-    case '09n':
+      weatherIconSrc = shower_rain;
+      break;
     case '10d':
-    case '10n':
-      weatherIconSrc = rain_icon;
+      weatherIconSrc = rain;
+      break;
+    case '11d':
+      weatherIconSrc = thunderstorm;
       break;
     case '13d':
-    case '13n':
-      weatherIconSrc = snow_icon;
+      weatherIconSrc = snow;
+      break;
+    case '50d':
+      weatherIconSrc = mist;
       break;
     default:
-      weatherIconSrc = clear_icon;
+      weatherIconSrc = clear_sky;
   }
   return weatherIconSrc;
 };

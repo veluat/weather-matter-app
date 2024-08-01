@@ -3,6 +3,7 @@ import s from './Footer.module.scss'
 import {Modal} from '../../shared/modal'
 import data from './../../../data/ui-common-data/UiCommonData'
 import {LocaleContext} from '../../../utils'
+import {CommonButton} from '../../shared/common-button'
 
 export const Footer = () => {
   const [isModalActive, setIsModalActive] = useState(false)
@@ -14,11 +15,7 @@ export const Footer = () => {
 
   return (
     <div className={s.root}>
-      <button className={s.feedback} onClick={handlerModalSet}>
-        <span>
-          {data[locale].feedback}
-        </span>
-      </button>
+      <CommonButton size={'small'} title={`${data[locale].feedback}`} handleButtonClick={handlerModalSet}/>
       <div className={s.dataSource}>
         {data[locale].footer}
         <a href='https://openweathermap.org/' target='_blank' rel='noreferrer'>OpenWeatherMap</a>
