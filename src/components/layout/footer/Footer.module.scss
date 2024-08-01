@@ -15,20 +15,15 @@
   .dataSource {
     font-size: 20px;
     font-weight: 400;
-    color: white;
+    color: $primary-color;
 
     a {
       text-decoration: none;
-      color: #ffff00;
+      color: $accent-color;
 
       &:hover {
-        color: white;
+        color: $primary-color;
       }
     }
-  }
-
-  .feedback {
-    @include button();
-    margin-top: 10px;
   }
 }

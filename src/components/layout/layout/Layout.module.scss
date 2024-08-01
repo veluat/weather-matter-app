@@ -8,11 +8,6 @@
   justify-content: space-between;
   flex-grow: 3;
 
-  .info {
-    height: 100%;
-    width: 70%;
-  }
-
   .details {
     display: flex;
     flex-direction: column;
@@ -25,5 +20,9 @@
       justify-content: space-around;
       flex-grow: 1;
     }
+  }
+
+  .dataContainer {
+    @include weatherDtaContainer();
   }
 }

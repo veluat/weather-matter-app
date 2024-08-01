@@ -34,37 +34,36 @@
   }
 }
 
-@mixin details($width: 500px, $height: 250px) {
-  width: 100%;
-  max-width: $width;
-  height: 100%;
-  max-height: $height;
+@mixin weatherDtaContainer() {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: $primary-color;
+    width: 70%;
+  }
+
+@mixin button() {
+  all: unset;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $accent-color;
-  border: 2px solid $primary-color;
-  border-radius: 40px;
-  text-align: center;
-  padding: 0 50px;
-}
-
-@mixin button {
-  all: unset;
 
   width: 100%;
   max-width: 200px;
   height: 50px;
+
   background-color: transparent;
+
   border-radius: 40px;
+  border: 2px solid $primary-color;
+  outline: 2px solid transparent;
+
   font-size: 25px;
   font-weight: 400;
-  border: 2px solid $primary-color;
+
   color: $accent-color;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 2px;
+  padding: 10px;
   cursor: pointer;
 
   &:focus, &:hover {
