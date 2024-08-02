@@ -4,9 +4,16 @@ const UiCommonData: UiCommonDataType = {
   en: {
     time: 'World Time',
     search: 'Search',
+    feels: 'Feels like',
     humidity: 'Humidity',
+    pressure: 'Pressure',
+    hPa: 'hPa',
     wind: 'Wind Speed',
     speed: 'km/h',
+    temp_min: 'min:',
+    temp_max: 'max:',
+    sunrise: 'Sunrise',
+    sunset: 'Sunset',
     hourlyDetails: 'Hourly Weather Details',
     next: 'Next 5 days',
     feedback: 'Feedback',
@@ -19,9 +26,16 @@ const UiCommonData: UiCommonDataType = {
   ru: {
     time: 'Мировое время',
     search: 'Поиск',
+    feels: 'Ощущается как',
     humidity: 'Влажность',
+    pressure: 'Давление',
+    hPa: 'гПа',
     wind: 'Скорость ветра',
     speed: 'км/ч',
+    temp_min: 'мин:',
+    temp_max: 'макс:',
+    sunrise: 'Рассвет',
+    sunset: 'Заход',
     hourlyDetails: 'Почасовой прогноз',
     next: 'Прогноз на 5 дней',
     feedback: 'Обратная связь',
@@ -29,7 +43,7 @@ const UiCommonData: UiCommonDataType = {
     dev: 'В разработке',
     current: 'Текущий прогноз',
     hourly: 'Почасовой прогноз',
-    fiveDay: '5-Day Forecast',
+    fiveDay: 'Прогноз на 5 дней',
   }
 }
 

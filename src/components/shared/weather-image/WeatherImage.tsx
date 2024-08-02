@@ -9,8 +9,8 @@ export const WeatherImage: React.FC<Props> = ({icon}) => {
   const weatherIconSrc = useWeatherIcon({icon})
 
   return (
-    <div className={s.weatherImage}>
-      <img src={weatherIconSrc} alt='weather'/>
+    <div className={s.root}>
+      <img className={s.weatherImage} src={weatherIconSrc} alt='weather'/>
     </div>
   )
 }

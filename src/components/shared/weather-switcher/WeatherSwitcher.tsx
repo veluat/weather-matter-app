@@ -1,8 +1,8 @@
 import s from '../language-switcher/LanguageSwitcher.module.scss'
 import {setDegrees} from '../../../services/weather-service/model/degreesSlice'
 import {useAppDispatch} from '../../../hooks'
-import metric from './../../../assets/weather/metric.png'
-import imperial from './../../../assets/weather/imperial.png'
+import metric from '../../../assets/weather/metric.svg'
+import imperial from './../../../assets/weather/imperial.svg'
 
 
 export const WeatherSwitcher = () => {

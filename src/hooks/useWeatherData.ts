@@ -3,12 +3,12 @@ import {LocaleContext} from '../utils'
 import {ErrorsData} from '../data'
 import {useAppSelector} from './useAppSelector'
 import {degreesSelector} from '../services/weather-service/model/degreesSelector'
-
+type WeatherItem = {
+  description: string;
+  icon: string;
+};
 export type ResponseWeatherDataType = {
-  weather: {
-    icon: string
-    main: string; //Rain, Snow, Clouds etc.
-  }
+  weather: WeatherItem[]
   main: {
     temp: number
     feels_like: number
@@ -76,7 +76,7 @@ const useWeatherData = () => {
       setError(ErrorsData[locale].try)
       setIsLoading(false)
     }
-  }, [apiKey, locale])
+  }, [apiKey, degrees, locale])
 
   return {weatherData, error, fetchWeatherData, isLoading}
 }

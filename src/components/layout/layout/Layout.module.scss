@@ -12,12 +12,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
 
     .block {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      align-items: center;
       flex-grow: 1;
     }
   }

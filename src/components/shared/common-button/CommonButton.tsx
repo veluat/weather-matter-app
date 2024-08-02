@@ -9,11 +9,9 @@ type CommonButtonType = {
 
 export const CommonButton: React.FC<CommonButtonType> = ({handleButtonClick, title, size}) => {
 
-  const style = size === 'small' ? `${s.root} ${s.size}` : s.root
-
   return (
     <>
-      <button className={style} onClick={() => handleButtonClick('current')}>{title}</button>
+      <button className={size ? `${s.root} ${s.small}` : s.root} onClick={() => handleButtonClick('current')}>{title}</button>
     </>
   )
 }

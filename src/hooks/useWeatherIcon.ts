@@ -13,6 +13,7 @@ type Props = {
 }
 
 export const useWeatherIcon = ({ icon }: Props): string => {
+
   let weatherIconSrc: string;
   switch (icon) {
     case '01d':
