@@ -1,17 +1,16 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import s from './Header.module.scss'
 import {LoadingIndicator} from '../../shared/loading-indicator'
 import {ErrorMessage} from '../../shared/error-message'
 import {Settings} from '../../shared/settings'
-import {LocaleContext} from '../../../utils'
-import data from './../../../data/ui-common-data/UiCommonData'
+import {TimeZoneWidget} from '../../shared/time-zone-widget'
 
 type Props = {
   isLoading: boolean
   error: string | null
+  timezone: number
 }
-export const Header: React.FC<Props> = ({isLoading, error}) => {
-  const {locale} = useContext(LocaleContext)
+export const Header: React.FC<Props> = ({isLoading, error, timezone}) => {
 
   return (
     <div className={s.root}>
@@ -19,7 +18,7 @@ export const Header: React.FC<Props> = ({isLoading, error}) => {
       {isLoading && <LoadingIndicator/>}
       {!isLoading && error && <ErrorMessage message={error}/>}
       <div className={s.timeBox}>
-        {data[locale].time}<br/>{data[locale].dev}
+        <TimeZoneWidget timezone={timezone}/>
       </div>
     </div>
   )

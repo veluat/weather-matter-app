@@ -57,7 +57,7 @@ export const WeatherApp: React.FC = () => {
 
   return (
     <div className={s.root}>
-      <Header isLoading={isLoading} error={error}/>
+      <Header isLoading={isLoading} error={error} timezone={weatherData.timezone}/>
       <Layout location={location}
               handleInputChange={handleInputChange}
               handleSearch={handleSearch}

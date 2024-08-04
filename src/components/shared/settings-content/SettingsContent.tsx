@@ -4,6 +4,7 @@ import data from '../../../data/settings-data/SettingsData'
 import {LocaleContext} from '../../../utils'
 import {LanguageSwitcher} from '../language-switcher'
 import {WeatherSwitcher} from '../weather-switcher'
+import {TimeZoneWidget} from '../time-zone-widget/TimeZoneWidget'
 
 export const SettingsContent = () => {
   const {locale} = useContext(LocaleContext)
@@ -28,10 +29,12 @@ export const SettingsContent = () => {
                 {index === 0 &&
                   <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}><LanguageSwitcher/></li>}
                 {index === 1 &&
-                  <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>{data[locale].label[1]}</li>}
+                  <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}><WeatherSwitcher/></li>}
                 {index === 2 &&
                   <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>{data[locale].label[2]}</li>}
-                {index === 3 && <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}><WeatherSwitcher/></li>}
+                {index === 3 &&
+                  <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>{data[locale].label[3]}</li>}
+
               </>
             )}
           </ul>
