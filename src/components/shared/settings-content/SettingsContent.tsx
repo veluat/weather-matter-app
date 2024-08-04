@@ -4,7 +4,6 @@ import data from '../../../data/settings-data/SettingsData'
 import {LocaleContext} from '../../../utils'
 import {LanguageSwitcher} from '../language-switcher'
 import {WeatherSwitcher} from '../weather-switcher'
-import {TimeZoneWidget} from '../time-zone-widget/TimeZoneWidget'
 
 export const SettingsContent = () => {
   const {locale} = useContext(LocaleContext)
