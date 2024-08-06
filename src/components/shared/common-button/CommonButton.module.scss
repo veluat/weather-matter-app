@@ -1,8 +1,19 @@
 @import './../../../styles/mixins';
 
 .root {
-    @include button();
+    width: 100%;
+    @include button;
+
+    .flex {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding: 0 10px;
+    }
 }
 .small {
+    @include button;
     padding: 0 0 2px;
 }
