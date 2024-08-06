@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import s from './Header.module.scss'
 import {LoadingIndicator} from '../../shared/loading-indicator'
 import {ErrorMessage} from '../../shared/error-message'
@@ -9,17 +9,16 @@ type Props = {
   isLoading: boolean
   error: string | null
   timezone: number
+  dt: number
 }
-export const Header: React.FC<Props> = ({isLoading, error, timezone}) => {
+export const Header: React.FC<Props> = ({isLoading, error, timezone, dt}) => {
 
   return (
     <div className={s.root}>
       <Settings/>
       {isLoading && <LoadingIndicator/>}
       {!isLoading && error && <ErrorMessage message={error}/>}
-      <div className={s.timeBox}>
-        <TimeZoneWidget timezone={timezone}/>
-      </div>
+      <TimeZoneWidget timezone={timezone} dt={dt}/>
     </div>
   )
 }

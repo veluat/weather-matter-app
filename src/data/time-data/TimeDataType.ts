@@ -1,5 +1,5 @@
 type TimeDataEntry = {
-  timeZone: string[]
+  timeZone: { label: string; utcOffset: number }[];
 };
 
 export type TimeDataType = {

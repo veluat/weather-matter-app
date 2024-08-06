@@ -32,9 +32,9 @@ export const Layout: React.FC<Props> = ({location, handleInputChange, handleSear
                    handleSearch={handleSearch}
                    onKeyDown={handleKeyDown}/>
         <div className={s.block}>
-          <CommonButton title={`${data[locale].current}`} handleButtonClick={() => handleButtonClick('current')}/>
-          <CommonButton title={`${data[locale].hourly}`} handleButtonClick={() => handleButtonClick('hourly')}/>
-          <CommonButton title={`${data[locale].fiveDay}`} handleButtonClick={() => handleButtonClick('forecast')}/>
+          <CommonButton width={35} height={35} sprId={'current'} title={`${data[locale].current}`} handleButtonClick={() => handleButtonClick('current')}/>
+          <CommonButton width={35} height={35} sprId={'hourly'} title={`${data[locale].hourly}`} handleButtonClick={() => handleButtonClick('hourly')}/>
+          <CommonButton width={35} height={35} sprId={'5-day'}  title={`${data[locale].fiveDay}`} handleButtonClick={() => handleButtonClick('forecast')}/>
         </div>
       </div>
       <div className={s.dataContainer}>

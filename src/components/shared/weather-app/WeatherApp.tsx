@@ -17,7 +17,7 @@ export const WeatherApp: React.FC = () => {
       try {
         await fetchWeatherData('Minsk')
       } catch (err) {
-        console.error('Error fetching weather data:', err)
+        console.error('Error fetching current-weather-img data:', err)
       }
     }
     initializeWeatherData().catch((err) => {
@@ -34,7 +34,7 @@ export const WeatherApp: React.FC = () => {
       try {
         await handleSearch()
       } catch (err) {
-        console.error('Error fetching weather data:', err)
+        console.error('Error fetching current-weather-img data:', err)
       }
     }
   }
@@ -43,7 +43,7 @@ export const WeatherApp: React.FC = () => {
     try {
       await fetchWeatherData(location)
     } catch (err) {
-      console.error('Error fetching weather data:', err)
+      console.error('Error fetching current-weather-img data:', err)
     }
   }
 
@@ -57,7 +57,7 @@ export const WeatherApp: React.FC = () => {
 
   return (
     <div className={s.root}>
-      <Header isLoading={isLoading} error={error} timezone={weatherData.timezone}/>
+      <Header isLoading={isLoading} error={error} timezone={weatherData.timezone} dt={weatherData.dt}/>
       <Layout location={location}
               handleInputChange={handleInputChange}
               handleSearch={handleSearch}

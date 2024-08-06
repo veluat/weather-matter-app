@@ -4,6 +4,7 @@ import data from './../../../data/ui-common-data/UiCommonData'
 import {LocaleContext} from '../../../utils'
 
 export const FiveDaysWeather = () => {
+
   const {locale} = useContext(LocaleContext)
 
   return (

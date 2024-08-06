@@ -1,12 +1,12 @@
-import clear_sky from '../assets/weather/clear_sky.png'
-import few_clouds from '../assets/weather/few_clouds.png'
-import scattered_clouds from '../assets/weather/scattered_clouds.png'
-import overcast_clouds from '../assets/weather/broken_clouds.png'
-import mist from '../assets/weather/mist.png'
-import rain from '../assets/weather/rain.png'
-import shower_rain from '../assets/weather/shower_rain.png'
-import snow from '../assets/weather/snow.png'
-import thunderstorm from '../assets/weather/thunderstorm.png'
+import clear_sky from '../assets/current-weather-img/clear_sky.png'
+import few_clouds from '../assets/current-weather-img/few_clouds.png'
+import scattered_clouds from '../assets/current-weather-img/scattered_clouds.png'
+import overcast_clouds from '../assets/current-weather-img/broken_clouds.png'
+import mist from '../assets/current-weather-img/mist.png'
+import rain from '../assets/current-weather-img/rain.png'
+import shower_rain from '../assets/current-weather-img/shower_rain.png'
+import snow from '../assets/current-weather-img/snow.png'
+import thunderstorm from '../assets/current-weather-img/thunderstorm.png'
 
 type Props = {
   icon: string

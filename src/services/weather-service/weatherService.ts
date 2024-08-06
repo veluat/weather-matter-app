@@ -8,7 +8,7 @@ export {}
 //       getCurrentWeather: builder.query<GetCurrentWeatherResponse, getCurrentWeatherArgs | void>({
 //         providesTags: ['Weather'],
 //         query: ({location, apiKey, degrees, locale}) => ({
-//           url: `weather?q=${location}&units=${degrees}&appid=${apiKey}&lang=${locale}`,
+//           url: `current-weather-img?q=${location}&units=${degrees}&appid=${apiKey}&lang=${locale}`,
 //         }),
 //       }),
 //     }

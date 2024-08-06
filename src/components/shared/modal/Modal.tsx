@@ -17,19 +17,18 @@ export const Modal: React.FC<ModalProps> = ({isModalActive, setIsModalActive, ty
   return (
     <div className={finallyClass}
          onClick={() => setIsModalActive(false)}>
-      <div className={s.modal_content} onClick={e => e.stopPropagation()}>
-        {type === 'footer' &&
-          <>
-            <ContactForm/>
-            <CloseButton setIsModalActive={setIsModalActive}/>
-          </>
-        }
-        {type === 'set' &&
-          <>
-            <SettingsContent/>
-          </>
-        }
-      </div>
+
+      {type === 'footer' &&
+        <div className={s.modal_content} onClick={e => e.stopPropagation()}>
+          <ContactForm/>
+          <CloseButton setIsModalActive={setIsModalActive}/>
+        </div>
+      }
+      {type === 'set' &&
+        <div className={s.set} onClick={e => e.stopPropagation()}>
+          <SettingsContent setIsModalActive={setIsModalActive}/>
+        </div>
+      }
     </div>
   )
 }

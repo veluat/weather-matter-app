@@ -1,8 +1,7 @@
 import s from '../language-switcher/LanguageSwitcher.module.scss'
 import {setDegrees} from '../../../services/weather-service/model/degreesSlice'
 import {useAppDispatch} from '../../../hooks'
-import metric from '../../../assets/weather/metric.svg'
-import imperial from './../../../assets/weather/imperial.svg'
+import {Icon} from '../icon'
 
 
 export const WeatherSwitcher = () => {
@@ -18,13 +17,13 @@ export const WeatherSwitcher = () => {
         className={s.switcherBtn}
         onClick={() => handleLanguageChange('metric')}
       >
-        <img src={metric} alt={metric}/>
+        <Icon sprId={'metric'} width={50} height={50} />
       </button>
       <button
         className={s.switcherBtn}
         onClick={() => handleLanguageChange('imperial')}
       >
-        <img src={imperial} alt={imperial}/>
+        <Icon sprId={'imperial'} width={50} height={50} viewBox={'0 0 24 24'}/>
       </button>
     </div>
   )

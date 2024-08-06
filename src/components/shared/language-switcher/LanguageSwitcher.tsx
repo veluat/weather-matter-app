@@ -1,6 +1,7 @@
 import {useContext} from 'react'
 import {LocaleContext} from '../../../utils'
 import s from './LanguageSwitcher.module.scss'
+import {Icon} from '../icon'
 
 export const LanguageSwitcher = () => {
   const { setLocale } = useContext(LocaleContext);
@@ -15,13 +16,13 @@ export const LanguageSwitcher = () => {
         className={s.switcherBtn}
         onClick={() => handleLanguageChange('en')}
       >
-        EN
+        <Icon sprId={'en'} width={50} height={50} />
       </button>
       <button
         className={s.switcherBtn}
         onClick={() => handleLanguageChange('ru')}
       >
-        RU
+        <Icon sprId={'ru'} width={50} height={50} />
       </button>
     </div>
   )
