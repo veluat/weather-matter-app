@@ -1,0 +1,12 @@
+@import '../../../styles/variable';
+
+.root {
+  height: 50px;
+  border: 1px solid $accent-color;
+  border-radius: 40px;
+  background-color: $background;
+  font-size: 20px;
+  font-weight: 400;
+  color: $font-color;
+  padding: 0 20px;
+}
