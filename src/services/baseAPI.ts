@@ -4,9 +4,9 @@ const weatherApiConfig = {
   baseUrl: 'https://api.openweathermap.org/data/2.5/'
 };
 
-export const weatherApi = createApi({
-  reducerPath: 'weatherApi',
+export const baseAPI = createApi({
+  reducerPath: 'baseAPI',
   baseQuery: fetchBaseQuery(weatherApiConfig),
   endpoints: () => ({}),
-  tagTypes: ['Weather'],
+  tagTypes: ['Weather', 'Five Days', 'Hourly'],
 });
