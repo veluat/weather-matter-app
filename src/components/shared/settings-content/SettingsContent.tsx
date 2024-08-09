@@ -45,18 +45,19 @@ export const SettingsContent: React.FC<SettingsContentProps> = ({setIsModalActiv
               <>
                 {index === 0 && (
                   <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
-                    <LanguageSwitcher/>
+                    <LanguageSwitcher setIsModalActive={setIsModalActive}/>
                   </li>
                 )}
                 {index === 1 && (
                   <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
-                    <WeatherSwitcher/>
+                    <WeatherSwitcher setIsModalActive={setIsModalActive}/>
                   </li>
                 )}
                 {index === 2 && (
                   <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
                     <TimeZoneSelect
                       onTimeZoneChange={handleTimeZoneChange}
+                      setIsModalActive={setIsModalActive}
                     />
                   </li>
                 )}

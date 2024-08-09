@@ -13,12 +13,12 @@ const TimeData: TimeDataType = {
   },
   ru: {
     timeZone: [
-      { label: 'MSK (Московское время)', utcOffset: 3 },
-      { label: 'SAMT (Самарское время)', utcOffset: 4 },
-      { label: 'YEKT (Екатеринбургское время)', utcOffset: 5 },
-      { label: 'NOVT (Новосибирское время)', utcOffset: 7 },
-      { label: 'VLAT (Владивостокское время)', utcOffset: 10 },
-      { label: 'IRST (Иранское время)', utcOffset: 3.5 }
+      { label: 'EST (Восточное стандартное время)', utcOffset: -5 },
+      { label: 'PST (Тихоокеанское стандартное время)', utcOffset: -8 },
+      { label: 'CET (Центральноевропейское время)', utcOffset: 1 },
+      { label: 'JST (Японское стандартное время)', utcOffset: 9 },
+      { label: 'AEST (Австралийское восточное стандартное время)', utcOffset: 10 },
+      { label: 'IST (Индийское стандартное время)', utcOffset: 5.5 }
     ]
   }
 };

@@ -1,13 +1,16 @@
-import {useContext} from 'react'
+import React, {useContext} from 'react'
 import {LocaleContext} from '../../../utils'
 import s from './LanguageSwitcher.module.scss'
 import {Icon} from '../icon'
-
-export const LanguageSwitcher = () => {
+type Props = {
+  setIsModalActive: (active: boolean) => void
+}
+export const LanguageSwitcher: React.FC<Props> = ({setIsModalActive}) => {
   const { setLocale } = useContext(LocaleContext);
 
   const handleLanguageChange = (newLocale: 'en' | 'ru') => {
     setLocale(newLocale);
+    setIsModalActive(false)
   };
 
   return (

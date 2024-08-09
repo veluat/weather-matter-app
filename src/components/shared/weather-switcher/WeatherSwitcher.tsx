@@ -1,14 +1,18 @@
 import s from '../language-switcher/LanguageSwitcher.module.scss'
-import {setDegrees} from '../../../services/weather-service/model/degreesSlice'
+import {setDegrees} from '../../../features/current-weather/model/slice/degreesSlice'
 import {useAppDispatch} from '../../../hooks'
 import {Icon} from '../icon'
+import React from 'react'
 
-
-export const WeatherSwitcher = () => {
+type Props = {
+  setIsModalActive: (active: boolean) => void
+}
+export const WeatherSwitcher: React.FC<Props> = ({setIsModalActive}) => {
   const dispatch = useAppDispatch()
 
   const handleLanguageChange = (newDegrees: 'metric' | 'imperial') => {
     dispatch(setDegrees(newDegrees))
+    setIsModalActive(false)
   }
 
   return (

@@ -1,16 +1,13 @@
 import React, {useContext} from 'react'
 import s from './CurrentWeather.module.scss'
-import {ResponseWeatherDataType, useAppSelector} from '../../../hooks'
-import {WeatherImage} from '../weather-image'
-import metric from '../../../assets/current-weather-img/metric.svg'
-import imperial from '../../../assets/current-weather-img/imperial.svg'
-import {degreesSelector} from '../../../services/weather-service/model/degreesSelector'
+import {useAppSelector} from '../../../hooks'
+import {WeatherImage} from '../../../components/shared/weather-image'
+import {degreesSelector} from '../model/selector/degreesSelector'
 import data from '../../../data/ui-common-data/UiCommonData'
 import {LocaleContext} from '../../../utils'
-import {CommonBlock} from './common-block/CommonBlock'
-import location_img from '../../../assets/details/location.svg'
-import weather_img from '../../../assets/wheater.svg'
-import {Icon} from '../icon'
+import {CommonBlock} from '../../../components/shared/common-block/CommonBlock'
+import {Icon} from '../../../components/shared/icon'
+import {ResponseWeatherDataType} from '../service'
 
 type Props = {
   weatherData: ResponseWeatherDataType
@@ -46,10 +43,12 @@ export const CurrentWeather: React.FC<Props> = ({weatherData}) => {
         </div>
         <div className={s.options}>
           <div className={s.temp}>
-            <CommonBlock value={`${Math.round(temp_min)}`} title={data[locale].temp_min} sprId={'min'} degreesID={degreesID}
-                         />
-            <CommonBlock value={`${Math.round(temp_max)}`} title={data[locale].temp_max} sprId={'max'} degreesID={degreesID}
-                         />
+            <CommonBlock value={`${Math.round(temp_min)}`} title={data[locale].temp_min} sprId={'min'}
+                         degreesID={degreesID}
+            />
+            <CommonBlock value={`${Math.round(temp_max)}`} title={data[locale].temp_max} sprId={'max'}
+                         degreesID={degreesID}
+            />
           </div>
           <div className={s.temp}>
             <CommonBlock value={sunriseTime} title={data[locale].sunrise}
@@ -64,10 +63,13 @@ export const CurrentWeather: React.FC<Props> = ({weatherData}) => {
           <Icon sprId={'location'} height={35} width={35}/>{`${name}, ${country}`}
         </div>
         <div className={s.iconDataContainer}>
-          <CommonBlock title={data[locale].feels} value={`${Math.round(feels_like)}`} sprId={'feels'} degreesID={degreesID} viewBox="0 0 32 32"/>
+          <CommonBlock title={data[locale].feels} value={`${Math.round(feels_like)}`} sprId={'feels'}
+                       degreesID={degreesID} viewBox='0 0 32 32'/>
           <CommonBlock title={data[locale].humidity} value={`${humidity} %`} sprId={'humidity'} viewBox={'0 0 24 24'}/>
-          <CommonBlock title={data[locale].wind} value={`${Math.round(speed)} ${data[locale].speed}`} sprId={'wind'} viewBox={'0 0 24 24'}/>
-          <CommonBlock title={data[locale].pressure} value={`${Math.round(pressure)} ${data[locale].hPa}`} sprId={'pressure'}/>
+          <CommonBlock title={data[locale].wind} value={`${Math.round(speed)} ${data[locale].speed}`} sprId={'wind'}
+                       viewBox={'0 0 24 24'}/>
+          <CommonBlock title={data[locale].pressure} value={`${Math.round(pressure)} ${data[locale].hPa}`}
+                       sprId={'pressure'}/>
         </div>
       </div>
     </div>
