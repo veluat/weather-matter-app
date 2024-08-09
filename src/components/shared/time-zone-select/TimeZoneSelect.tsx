@@ -3,7 +3,7 @@ import TimeData from './../../../data/time-data/TimeData'
 import {LocaleContext} from '../../../utils'
 import s from './TimeZoneSelect.module.scss'
 import {useAppDispatch} from '../../../hooks'
-import {setCurrentTime, setTimeZone} from '../../../features/time-zone-service/model/timeZoneSlice'
+import {setTimeZone} from '../../../features/time-zone-service/model/timeZoneSlice'
 
 export type TimeZoneOption = {
   label: string;
@@ -15,7 +15,7 @@ type TimeZoneSelectProps = {
   onTimeZoneChange: (timeZoneOption: TimeZoneOption) => void;
 };
 
-export const TimeZoneSelect: React.FC<TimeZoneSelectProps> = ({onTimeZoneChange, setIsModalActive}) => {
+export const TimeZoneSelect: React.FC<TimeZoneSelectProps> = ({setIsModalActive}) => {
   const {locale} = useContext(LocaleContext)
   const dispatch = useAppDispatch()
   const handleTimeZoneChange = (event: ChangeEvent<HTMLSelectElement>) => {

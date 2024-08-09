@@ -7,25 +7,27 @@ import {CloseButton} from '../close-button'
 import {TimeZoneSelect} from '../time-zone-select'
 import TimeData from './../../../data/time-data/TimeData'
 import SettingsData from '../../../data/settings-data/SettingsData'
+import {setTimeZone} from '../../../features/time-zone-service/model/timeZoneSlice'
+import {useAppDispatch} from '../../../hooks'
 
 type SettingsContentProps = {
   setIsModalActive: (isModalActive: boolean) => void
 }
 
 export const SettingsContent: React.FC<SettingsContentProps> = ({setIsModalActive}) => {
+  const dispatch = useAppDispatch()
   const {locale} = useContext(LocaleContext)
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  const [selectedTimeZone, setSelectedTimeZone] = useState<{ label: string; utcOffset: number }>({
-    label: 'UTC',
-    utcOffset: 0
-  })
-
+  // const [selectedTimeZone, setSelectedTimeZone] = useState<{ label: string; utcOffset: number }>({
+  //   label: 'UTC',
+  //   utcOffset: 0
+  // })
   const settingsHandler = (index: number) => {
     setSelectedIndex(index)
   }
 
   const handleTimeZoneChange = (timeZoneOption: { label: string; utcOffset: number }) => {
-    setSelectedTimeZone(timeZoneOption)
+    dispatch(setTimeZone(timeZoneOption.utcOffset))
   }
 
   return (

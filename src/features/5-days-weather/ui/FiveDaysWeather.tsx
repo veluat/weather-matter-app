@@ -22,7 +22,7 @@ export const FiveDaysWeather = () => {
   const degreesID = degrees === 'metric' ? 'metric' : 'imperial'
   const {locale} = useContext(LocaleContext)
 
-  const {data, error, isLoading, refetch} = useGetFiveDaysWeatherQuery({
+  const {data, error, isLoading} = useGetFiveDaysWeatherQuery({
     location,
     apiKey: `${process.env.REACT_APP_API_KEY}`,
     degrees,

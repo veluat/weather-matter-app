@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import s from './Header.module.scss'
 import {LoadingIndicator} from '../../shared/loading-indicator'
 import {ErrorMessage} from '../../shared/error-message'

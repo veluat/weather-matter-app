@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import s from './HourlyWeather.module.scss'
 import {LocaleContext} from '../../../utils'
-import {useAppDispatch, useAppSelector} from '../../../hooks'
+import {useAppSelector} from '../../../hooks'
 import UiCommonData from '../../../data/ui-common-data/UiCommonData'
 import {degreesSelector} from '../../current-weather/model/selector/degreesSelector'
 import {locationSelector} from '../../current-weather/model/selector/locationSelector'
@@ -16,13 +16,12 @@ import {useGetFiveDaysWeatherQuery} from '../../5-days-weather/service/fiveDaysS
 import Slider from 'react-slick'
 
 export const HourlyWeather = () => {
-  const dispatch = useAppDispatch()
   const {degrees} = useAppSelector(degreesSelector)
   const {location} = useAppSelector(locationSelector)
   const degreesID = degrees === 'metric' ? 'metric' : 'imperial'
   const {locale} = useContext(LocaleContext)
 
-  const {data, error, isLoading, refetch} = useGetFiveDaysWeatherQuery({
+  const {data, error, isLoading} = useGetFiveDaysWeatherQuery({
     location,
     apiKey: `${process.env.REACT_APP_API_KEY}`,
     degrees,
