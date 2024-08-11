@@ -1,4 +1,4 @@
-type FiveDaysWeatherItem = {
+type ForecastWeatherItem = {
   icon: string;
   description: string;
 };
@@ -8,12 +8,12 @@ type ListArray = {
   main: {
     temp: number;
   };
-  weather: FiveDaysWeatherItem[];
+  weather: ForecastWeatherItem[];
   pop: number;
   dt_txt: string
 }
 
-export type ResponseFiveDaysDataType = {
+export type ResponseForecastDataType = {
   cod: string;
   message: number;
   cnt: number;
@@ -32,10 +32,3 @@ export type ResponseFiveDaysDataType = {
     sunset: number;
   };
 };
-
-export type getFiveDaysArgs = {
-  location: string,
-  apiKey: string,
-  degrees: string,
-  locale: string
-}
