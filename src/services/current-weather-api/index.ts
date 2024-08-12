@@ -1,2 +1,2 @@
-//export * from './weatherService'
+export * from './weatherService'
 export * from './weatherServiceTypes'

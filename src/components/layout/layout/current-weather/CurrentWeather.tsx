@@ -1,13 +1,13 @@
 import React, {useContext} from 'react'
 import s from './CurrentWeather.module.scss'
-import {useAppSelector} from '../../../hooks'
-import {WeatherImage} from '../../../components/shared/weather-image'
-import {degreesSelector} from '../model/selector/degreesSelector'
-import data from '../../../data/ui-common-data/UiCommonData'
-import {LocaleContext} from '../../../utils'
-import {CommonBlock} from '../../../components/shared/common-block/CommonBlock'
-import {Icon} from '../../../components/shared/icon'
-import {ResponseWeatherDataType} from '../service'
+import {useAppSelector} from '../../../../hooks'
+import {WeatherImage} from '../../../shared/weather-image'
+import {degreesSelector} from '../../../../app'
+import data from '../../../../locale-data/ui-common-data/UiCommonData'
+import {LocaleContext} from '../../../../utils'
+import {CommonBlock} from '../../../shared/common-block'
+import {Icon} from '../../../shared/icon'
+import {ResponseWeatherDataType} from '../../../../services'
 
 type Props = {
   weatherData: ResponseWeatherDataType

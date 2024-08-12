@@ -1,20 +1,17 @@
 import React, {useContext} from 'react'
 import s from './FiveDaysWeather.module.scss'
-import {LocaleContext} from '../../../utils'
-import {useGetFiveDaysWeatherQuery} from '../service/fiveDaysService'
-import {useAppSelector} from '../../../hooks'
-import {degreesSelector} from '../../current-weather/model/selector/degreesSelector'
-import {locationSelector} from '../../current-weather/model/selector/locationSelector'
-import {LoadingIndicator} from '../../../components/shared/loading-indicator'
-import {ResponseWeatherError} from '../../current-weather/service'
-import {ErrorsData} from '../../../data'
-import {ErrorMessage} from '../../../components/shared/error-message'
-import {WeatherImage} from '../../../components/shared/weather-image'
-import {Icon} from '../../../components/shared/icon'
+import {LocaleContext, UseErrorHandler} from '../../../../utils'
+import {useGetForecastWeatherQuery} from '../../../../services'
+import {useAppSelector} from '../../../../hooks'
+import {degreesSelector} from '../../../../app'
+import {locationSelector} from '../../../../app'
+import {LoadingIndicator} from '../../../shared/loading-indicator'
+import {WeatherImage} from '../../../shared/weather-image'
+import {Icon} from '../../../shared/icon'
 import moment from 'moment'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import UiCommonData from '../../../data/ui-common-data/UiCommonData'
+import UiCommonData from '../../../../locale-data/ui-common-data/UiCommonData'
 
 export const FiveDaysWeather = () => {
   const {degrees} = useAppSelector(degreesSelector)
@@ -22,34 +19,17 @@ export const FiveDaysWeather = () => {
   const degreesID = degrees === 'metric' ? 'metric' : 'imperial'
   const {locale} = useContext(LocaleContext)
 
-  const {data, error, isLoading} = useGetFiveDaysWeatherQuery({
+  const {data, error, isLoading} = useGetForecastWeatherQuery({
     location,
     apiKey: `${process.env.REACT_APP_API_KEY}`,
     degrees,
     locale,
   })
 
+  UseErrorHandler(error)
+
   if (isLoading) {
     return <LoadingIndicator/>
-  }
-
-  if (error) {
-    let errorMessage = 'An error occurred while fetching the weather data.'
-    if (
-      typeof error === 'object' &&
-      'data' in error &&
-      typeof error.data === 'object' &&
-      error.data !== null &&
-      'cod' in error.data
-    ) {
-      const errorData = error.data as ResponseWeatherError
-      if (errorData.cod === '404') {
-        errorMessage = ErrorsData[locale].mistake
-      } else {
-        errorMessage = ErrorsData[locale].try
-      }
-    }
-    return <ErrorMessage message={errorMessage}/>
   }
 
   if (!data) {

@@ -25,7 +25,7 @@ export const ContactFormData: ContactFormDataType = {
     labelName: 'Имя',
     placeholderName: 'Введите ваше имя...',
     labelEmail: 'Электронная почта',
-    placeholderEmail: 'Введите адрес электронной почты...',
+    placeholderEmail: 'Введите адрес эл.почты...',
     labelSubject: 'Тема обращения',
     placeholderSubject: 'Тема обращения...',
     labelMessage: 'Сообщение',
@@ -35,7 +35,7 @@ export const ContactFormData: ContactFormDataType = {
     sendingFAIL: 'Сообщение не отправлено. Пожалуйста, свяжитесь другим способом.',
     errorsName: 'Введите имя',
     errorsEmail: 'Введите Email',
-    errorsEmailInvalid: 'Неверный адрес электронной почты',
+    errorsEmailInvalid: 'Неверный адрес эл.почты',
     errorsSubject: 'Введите тему',
     errorsMessage: 'Введите текст',
   }

@@ -14,13 +14,13 @@ const UiCommonData: UiCommonDataType = {
     temp_max: 'max:',
     sunrise: 'Sunrise',
     sunset: 'Sunset',
-    hourlyDetails: 'Hourly Weather Details',
+    hourlyDetails: '3 Hour Forecast Details',
     next: 'Next 5 days',
     feedback: 'Feedback',
     footer: 'Data provided by ',
     dev: 'Coming Soon',
     current: 'Current Weather',
-    hourly: 'Hourly Forecast',
+    hourly: '3 Hour Forecast',
     fiveDay: '5-Day Forecast',
   },
   ru: {
@@ -36,15 +36,15 @@ const UiCommonData: UiCommonDataType = {
     temp_max: 'макс:',
     sunrise: 'Восход',
     sunset: 'Закат',
-    hourlyDetails: 'Почасовой прогноз',
+    hourlyDetails: 'Подробный 3-часовой прогноз',
     next: 'Прогноз на 5 дней',
     feedback: 'Обратная связь',
     footer: 'Данные получены из ',
     dev: 'В разработке',
     current: 'Текущий прогноз',
-    hourly: 'Почасовой прогноз',
+    hourly: '3-часовой прогноз',
     fiveDay: 'Прогноз на 5 дней',
   }
 }
 
-export default UiCommonData;
+export default UiCommonData
