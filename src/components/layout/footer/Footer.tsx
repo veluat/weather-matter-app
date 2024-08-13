@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import s from './Footer.module.scss'
 import {Modal} from '../../shared/modal'
-import data from './../../../data/ui-common-data/UiCommonData'
+import data from '../../../locale-data/ui-common-data/UiCommonData'
 import {LocaleContext} from '../../../utils'
 import {CommonButton} from '../../shared/common-button'
 

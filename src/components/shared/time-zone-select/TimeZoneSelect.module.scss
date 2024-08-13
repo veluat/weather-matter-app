@@ -1,12 +1,10 @@
-@import '../../../styles/variable';
-
 .root {
   height: 50px;
-  border: 1px solid $accent-color;
+  border: 2px solid var(--primary-color);
   border-radius: 40px;
-  background-color: $background;
-  font-size: 20px;
+  background-color: var(--background);
+  font-size: 24px;
   font-weight: 400;
-  color: $font-color;
+  color: var(--font-color);
   padding: 0 20px;
 }

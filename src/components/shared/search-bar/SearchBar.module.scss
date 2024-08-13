@@ -1,3 +1,5 @@
+@import './../../../styles/mixins';
+
 .topBar {
   display: flex;
   justify-content: flex-start;
@@ -5,28 +7,21 @@
   position: relative;
 
   .cityInput {
+    @include font($max: 30, $color: var(--font-color));
+
     display: flex;
     width: 100%;
     max-width: 500px;
     height: 70px;
-    background-color: #ebfffc;
+    background-color: var(--background);
     border-radius: 40px;
     padding-left: 40px;
-    color: #626262;
-    font-size: 30px;
-    font-weight: 400;
     outline: 2px solid transparent;
-    border: 2px solid white;
+    border: 2px solid var(--primary-color);
 
     &:focus, &:hover {
-      outline: 2px solid #626262;
+      outline: 2px solid var(--font-color);
     }
-
-    &::placeholder {
-      font-size: 30px;
-      font-weight: 400;
-    }
-
   }
 
   .searchIcon {
@@ -47,6 +42,19 @@
       height: 40px;
       width: 40px;
       cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 830px) {
+    margin: 35px 0 25px;
+    .cityInput,
+    .searchIcon {
+      height: 40px;
+
+      .img {
+        height: 25px;
+        width: 25px;
+      }
     }
   }
 }

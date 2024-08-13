@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './CommonBlock.module.scss'
-import {useWeatherBlockImg} from '../../../hooks/useWeatherBlockImg'
 import {Icon} from '../icon'
+import {useWeatherBlockImg} from '../../../hooks'
 
 type Props = {
   value: string

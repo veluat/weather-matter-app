@@ -1,20 +1,5 @@
-@import '../../../styles/variable';
 @import '../../../styles/mixins';
 
 .switcherContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 25px;
-
-  .switcherBtn {
-    @include button();
-    padding: 0 10px;
-    border-color: $accent-color;
-
-    img {
-      width: 50px;
-    }
-  }
-
+  @include switcherContainer();
 }

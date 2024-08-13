@@ -1,26 +1,31 @@
-import React, { createContext, useState, ReactNode } from 'react';
+import React, {createContext, ReactNode} from 'react'
+import {useLocalStorage} from '../hooks'
+
+export type SupportedThemes = 'light' | 'dark';
 
 type ThemeContextType = {
-  theme: 'light' | 'dark';
-  setTheme: (newTheme: 'light' | 'dark') => void;
+  theme: SupportedThemes;
+  setTheme: (theme: SupportedThemes) => void;
 };
 
 export const ThemeContext = createContext<ThemeContextType>({
   theme: 'light',
-  setTheme: () => {},
-});
+  setTheme: () => {
+  },
+})
 
 type ThemeProviderProps = {
   children: ReactNode;
 };
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+export const ThemeProvider = ({children}: ThemeProviderProps) => {
+  const [theme, setTheme] = useLocalStorage<SupportedThemes>('theme', 'light')
 
-  const value = {
-    theme,
-    setTheme,
-  };
+  const value = {theme, setTheme}
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
-};
+  return (
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
+  )
+}

@@ -1,4 +1,5 @@
-import React, { createContext, ReactNode, useState } from 'react';
+import React, {createContext, ReactNode, useState} from 'react'
+import {useLocalStorage} from '../hooks'
 
 export type SupportedLocales = 'en' | 'ru';
 
@@ -11,26 +12,28 @@ type LocaleContextType = {
 
 const LocaleContext = createContext<LocaleContextType>({
   locale: 'en',
-  setLocale: () => {},
+  setLocale: () => {
+  },
   time: new Date(),
-  setTime: () => {},
-});
+  setTime: () => {
+  },
+})
 
 type LocaleProviderProps = {
   children: ReactNode;
 };
 
-const LocaleProvider = ({ children }: LocaleProviderProps) => {
-  const [locale, setLocale] = useState<SupportedLocales>('en');
-  const [time, setTime] = useState<Date>(new Date());
+const LocaleProvider = ({children}: LocaleProviderProps) => {
+  const [locale, setLocale] = useLocalStorage<SupportedLocales>('locale', 'en')
+  const [time, setTime] = useState<Date>(new Date())
 
-  const value = { locale, setLocale, time, setTime };
+  const value = {locale, setLocale, time, setTime}
 
   return (
     <LocaleContext.Provider value={value}>
       {children}
     </LocaleContext.Provider>
-  );
-};
+  )
+}
 
-export { LocaleContext, LocaleProvider };
+export {LocaleContext, LocaleProvider}

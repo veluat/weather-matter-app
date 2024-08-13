@@ -4,7 +4,7 @@ import s from './ContactForm.module.scss'
 import emails from '@emailjs/browser'
 import {LoadingIndicator} from '../loading-indicator'
 import {LocaleContext} from '../../../utils'
-import {ContactFormData} from '../../../data'
+import {ContactFormData} from '../../../locale-data'
 
 export const ContactForm = () => {
   const {locale} = useContext(LocaleContext)

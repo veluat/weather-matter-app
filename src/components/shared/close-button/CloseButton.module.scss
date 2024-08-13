@@ -1,5 +1,3 @@
-@import './../../../styles/variable';
-
 .close {
   all: unset;
   position: absolute;
@@ -13,7 +11,7 @@
     max-height: 70px;
 
     &:hover {
-      color: $accent-color;
+      color: var(--accent-color);
       transition: .2s ease-in-out;
     }
   }

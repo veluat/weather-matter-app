@@ -5,29 +5,19 @@ import {LanguageSwitcher} from '../language-switcher'
 import {WeatherSwitcher} from '../weather-switcher'
 import {CloseButton} from '../close-button'
 import {TimeZoneSelect} from '../time-zone-select'
-import TimeData from './../../../data/time-data/TimeData'
-import SettingsData from '../../../data/settings-data/SettingsData'
-import {setTimeZone} from '../../../features/time-zone-service/model/timeZoneSlice'
-import {useAppDispatch} from '../../../hooks'
+import SettingsData from '../../../locale-data/settings-data/SettingsData'
+import {ThemeSwitcher} from '../theme-switcher'
 
 type SettingsContentProps = {
   setIsModalActive: (isModalActive: boolean) => void
 }
 
 export const SettingsContent: React.FC<SettingsContentProps> = ({setIsModalActive}) => {
-  const dispatch = useAppDispatch()
   const {locale} = useContext(LocaleContext)
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  // const [selectedTimeZone, setSelectedTimeZone] = useState<{ label: string; utcOffset: number }>({
-  //   label: 'UTC',
-  //   utcOffset: 0
-  // })
+
   const settingsHandler = (index: number) => {
     setSelectedIndex(index)
-  }
-
-  const handleTimeZoneChange = (timeZoneOption: { label: string; utcOffset: number }) => {
-    dispatch(setTimeZone(timeZoneOption.utcOffset))
   }
 
   return (
@@ -47,25 +37,24 @@ export const SettingsContent: React.FC<SettingsContentProps> = ({setIsModalActiv
               <>
                 {index === 0 && (
                   <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
-                    <LanguageSwitcher setIsModalActive={setIsModalActive}/>
-                  </li>
-                )}
-                {index === 1 && (
-                  <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
-                    <WeatherSwitcher setIsModalActive={setIsModalActive}/>
-                  </li>
-                )}
-                {index === 2 && (
-                  <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
                     <TimeZoneSelect
-                      onTimeZoneChange={handleTimeZoneChange}
                       setIsModalActive={setIsModalActive}
                     />
                   </li>
                 )}
+                {index === 1 && (
+                  <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
+                    <LanguageSwitcher setIsModalActive={setIsModalActive}/>
+                  </li>
+                )}
+                {index === 2 && (
+                  <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
+                    <WeatherSwitcher setIsModalActive={setIsModalActive}/>
+                  </li>
+                )}
                 {index === 3 && (
                   <li className={`${s.value} ${selectedIndex === index ? s.active : ''}`}>
-                    {TimeData[locale].timeZone[3].label}
+                    <ThemeSwitcher setIsModalActive={setIsModalActive}/>
                   </li>
                 )}
               </>

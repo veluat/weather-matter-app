@@ -1,40 +1,37 @@
-import React, {ChangeEvent, useContext} from 'react'
-import TimeData from './../../../data/time-data/TimeData'
-import {LocaleContext} from '../../../utils'
+import React, {useContext} from 'react'
+import {setTimeZone, updateCurrentTime} from '../../../app'
+import TimeData, {getUtcOffsetByLabel} from '../../../locale-data/time-data/TimeData'
+import {useAppDispatch, useAppSelector} from '../../../hooks'
 import s from './TimeZoneSelect.module.scss'
-import {useAppDispatch} from '../../../hooks'
-import {setTimeZone} from '../../../features/time-zone-service/model/timeZoneSlice'
-
-export type TimeZoneOption = {
-  label: string;
-  utcOffset: number;
-};
+import {currentTimeSelector} from '../../../app'
+import {LocaleContext} from '../../../utils'
 
 type TimeZoneSelectProps = {
-  setIsModalActive: (active: boolean) => void
-  onTimeZoneChange: (timeZoneOption: TimeZoneOption) => void;
+  setIsModalActive: (active: boolean) => void;
 };
 
 export const TimeZoneSelect: React.FC<TimeZoneSelectProps> = ({setIsModalActive}) => {
-  const {locale} = useContext(LocaleContext)
+  const {timeZone} = useAppSelector(currentTimeSelector)
   const dispatch = useAppDispatch()
-  const handleTimeZoneChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const selectedTimeZone = TimeData[locale].timeZone.find(
-      (tz) => tz.label === event.target.value
-    )
-    if (selectedTimeZone) {
-      dispatch(setTimeZone(selectedTimeZone.utcOffset))
-      setIsModalActive(false)
-    }
+  const {locale} = useContext(LocaleContext)
+
+  const handleTimeZoneChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedTimeZoneLabel = event.target.value
+    getUtcOffsetByLabel(selectedTimeZoneLabel)
+    dispatch(setTimeZone(selectedTimeZoneLabel))
+    dispatch(updateCurrentTime())
+    setIsModalActive(false)
   }
 
   return (
-    <select className={s.root} id='time-zone-select' onChange={handleTimeZoneChange}>
-      {TimeData[locale].timeZone.map((timeZone: TimeZoneOption) => (
-        <option className={s.option} key={timeZone.label} value={timeZone.utcOffset}>
-          {timeZone.label}
-        </option>
-      ))}
-    </select>
+    <div>
+      <select id='time-zone-select' className={s.root} value={timeZone} onChange={handleTimeZoneChange}>
+        {TimeData[locale].timeZones.map(({label}) => (
+          <option className={s.option} key={label} value={label}>
+            {label}
+          </option>
+        ))}
+      </select>
+    </div>
   )
 }

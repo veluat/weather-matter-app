@@ -1,61 +1,49 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect} from 'react'
 import moment from 'moment-timezone'
 import s from './TimeZoneWidget.module.scss'
 import {Icon} from '../icon'
 import {LocaleContext} from '../../../utils'
 import {useAppDispatch, useAppSelector} from '../../../hooks'
-import {setCurrentTime} from '../../../features/time-zone-service/model/timeZoneSlice'
-import {timeZoneSelector} from '../../../features/time-zone-service/model/timeZoneSelector'
+import {currentTimeSelector} from '../../../app'
+import {updateCurrentTime} from '../../../app'
+import {getTimeZoneDisplayByLabel} from '../../../locale-data'
 
 type TimeZoneWidgetProps = {
-  timezone: number;
-  dt: number
+  dt: number;
 };
 
-export const TimeZoneWidget: React.FC<TimeZoneWidgetProps> = ({timezone, dt}) => {
+export const TimeZoneWidget: React.FC<TimeZoneWidgetProps> = ({dt}) => {
   const {locale} = useContext(LocaleContext)
+  const {timeZone, currentTime} = useAppSelector(currentTimeSelector)
+  const currentDate = moment.unix(dt).tz(timeZone).format('DD.MM.YYYY')
   const dispatch = useAppDispatch()
-  const currentTime = useAppSelector(timeZoneSelector)
-
-  const currentDate = useUnixTimestampToDate(dt)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      dispatch(setCurrentTime(new Date()))
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [dispatch, timezone])
 
   moment.updateLocale('ru', {
     weekdaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
   })
   moment.locale(locale)
-  
+
+  const currentTimeFormatted = moment.tz(currentTime, timeZone).format('HH:mm')
+  const timeZoneDisplay = getTimeZoneDisplayByLabel(timeZone)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(updateCurrentTime())
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [dispatch])
+
   return (
     <div className={s.timeBox}>
       <div className={s.time}>
         <Icon sprId={'date'} viewBox={'0 0 24 24'} width={25} height={25}/>
-        <span>{currentDate}{moment(dt).format(' ddd')}</span>
+        <span>{currentDate} {moment.unix(dt).tz(timeZone).format('ddd')}</span>
       </div>
       <div className={s.time}>
         <Icon sprId={'clock'} viewBox={'0 0 32 32'} width={25} height={25}/>
-        <span>{moment.tz(currentTime, moment.tz.guess()).format('HH:mm (UTC z:00)')}</span>
+        <span>{currentTimeFormatted} {timeZoneDisplay}</span>
       </div>
     </div>
   )
-}
-
-const useUnixTimestampToDate = (unixTimestamp: number): string => {
-  const [date, setDate] = useState<string>('')
-
-  useEffect(() => {
-    const dateFromUnix = new Date(unixTimestamp * 1000)
-    const dateString = dateFromUnix.toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    }).replace(/\//g, '.')
-    setDate(dateString)
-  }, [unixTimestamp])
-
-  return date
 }

@@ -8,17 +8,22 @@ import {TimeZoneWidget} from '../../shared/time-zone-widget'
 type Props = {
   isLoading: boolean
   error: string | null
-  timezone: number
   dt: number
 }
-export const Header: React.FC<Props> = ({isLoading, error, timezone, dt}) => {
+export const Header: React.FC<Props> = ({isLoading, error, dt}) => {
 
   return (
     <div className={s.root}>
-      <Settings/>
-      {isLoading && <LoadingIndicator/>}
-      {!isLoading && error && <ErrorMessage message={error}/>}
-      <TimeZoneWidget timezone={timezone} dt={dt}/>
+      <div className={s.header}>
+        <div className={s.settings}>
+          <Settings/>
+        </div>
+        {isLoading && <LoadingIndicator/>}
+        {!isLoading && error && <div className={s.errorMessage}><ErrorMessage message={error}/></div>}
+        <div className={s.timeZoneWidget}>
+          <TimeZoneWidget dt={dt}/>
+        </div>
+      </div>
     </div>
   )
 }

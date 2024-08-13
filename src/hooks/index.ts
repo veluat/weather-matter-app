@@ -1,4 +1,5 @@
 export * from './useWeatherIcon'
-export * from './useWeatherData'
 export * from './useAppDispatch'
 export * from './useAppSelector'
+export * from './useWeatherBlockImg'
+export * from './useLocalStorage'

@@ -1,8 +1,7 @@
-import s from '../language-switcher/LanguageSwitcher.module.scss'
-import {setDegrees} from '../../../features/current-weather/model/slice/degreesSlice'
-import {useAppDispatch} from '../../../hooks'
-import {Icon} from '../icon'
 import React from 'react'
+import {setDegrees} from '../../../app'
+import {useAppDispatch} from '../../../hooks'
+import s from './WeatherSwitcher.module.scss'
 
 type Props = {
   setIsModalActive: (active: boolean) => void
@@ -21,13 +20,13 @@ export const WeatherSwitcher: React.FC<Props> = ({setIsModalActive}) => {
         className={s.switcherBtn}
         onClick={() => handleLanguageChange('metric')}
       >
-        <Icon sprId={'metric'} width={50} height={50} />
+        °C
       </button>
       <button
         className={s.switcherBtn}
         onClick={() => handleLanguageChange('imperial')}
       >
-        <Icon sprId={'imperial'} width={50} height={50} viewBox={'0 0 24 24'}/>
+        °F
       </button>
     </div>
   )

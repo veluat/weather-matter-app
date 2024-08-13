@@ -8,7 +8,13 @@ type IconProps = {
   sprId?: string
   fill?: string
 }
-export const Icon: React.FC<IconProps> = ({width, height, viewBox = '0 0 24 24', sprId, fill = 'white'}) => {
+export const Icon: React.FC<IconProps> = ({
+                                            width,
+                                            height,
+                                            viewBox = '0 0 24 24',
+                                            sprId,
+                                            fill = 'var(--primary-color)'
+                                          }) => {
   return (
     <svg fill={fill}
          width={width}

@@ -12,43 +12,43 @@ type Props = {
   icon: string
 }
 
-export const useWeatherIcon = ({ icon }: Props): string => {
+export const useWeatherIcon = ({icon}: Props): string => {
 
-  let weatherIconSrc: string;
+  let weatherIconSrc: string
   switch (icon) {
     case '01d':
     case '01n':
-      weatherIconSrc = clear_sky;
-      break;
+      weatherIconSrc = clear_sky
+      break
     case '02d':
     case '02n':
-      weatherIconSrc = few_clouds;
-      break;
+      weatherIconSrc = few_clouds
+      break
     case '03d':
     case '03n':
-      weatherIconSrc = scattered_clouds;
-      break;
+      weatherIconSrc = scattered_clouds
+      break
     case '04d':
     case '04n':
-      weatherIconSrc = overcast_clouds;
-      break;
+      weatherIconSrc = overcast_clouds
+      break
     case '09d':
-      weatherIconSrc = shower_rain;
-      break;
+      weatherIconSrc = shower_rain
+      break
     case '10d':
-      weatherIconSrc = rain;
-      break;
+      weatherIconSrc = rain
+      break
     case '11d':
-      weatherIconSrc = thunderstorm;
-      break;
+      weatherIconSrc = thunderstorm
+      break
     case '13d':
-      weatherIconSrc = snow;
-      break;
+      weatherIconSrc = snow
+      break
     case '50d':
-      weatherIconSrc = mist;
-      break;
+      weatherIconSrc = mist
+      break
     default:
-      weatherIconSrc = clear_sky;
+      weatherIconSrc = few_clouds
   }
-  return weatherIconSrc;
-};
+  return weatherIconSrc
+}

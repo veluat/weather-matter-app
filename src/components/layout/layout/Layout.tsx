@@ -1,48 +1,45 @@
 import React, {useContext, useState} from 'react'
 import {SearchBar} from '../../shared/search-bar'
-import {CurrentWeather} from '../../../features/current-weather/ui'
+import {CurrentWeather} from './current-weather'
 import s from './Layout.module.scss'
-import {FiveDaysWeather} from '../../../features/5-days-weather/ui'
-import data from '../../../data/ui-common-data/UiCommonData'
+import {FiveDaysWeather} from './5-days-weather'
+import data from '../../../locale-data/ui-common-data/UiCommonData'
 import {LocaleContext} from '../../../utils'
 import {CommonButton} from '../../shared/common-button'
-import {ResponseWeatherDataType} from '../../../features/current-weather/service'
-import {HourlyWeather} from '../../../features/hourly-weather/ui'
+import {ResponseWeatherDataType} from '../../../services'
+import {HourlyWeather} from './hourly-weather'
 
 type Props = {
-  handleInputChange: (value: React.ChangeEvent<HTMLInputElement>) => void,
-  handleSearch: () => void
-  handleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
+  handleSearch: (value: string) => void;
   weatherData: ResponseWeatherDataType
 }
 
-export const Layout: React.FC<Props> = ({ handleInputChange, handleSearch, handleKeyDown, weatherData}) => {
-  const [activeComponent, setActiveComponent] = useState<'current' | 'forecast' | 'hourly'>('current')
+export const Layout: React.FC<Props> = ({handleSearch, weatherData}) => {
+  const [activeComponent, setActiveComponent] = useState<'current' | 'forecast-api' | 'hourly'>('current')
   const {locale} = useContext(LocaleContext)
 
-  const handleButtonClick = (component: 'current' | 'forecast' | 'hourly') => {
+  const handleButtonClick = (component: 'current' | 'forecast-api' | 'hourly') => {
     setActiveComponent(component)
   }
   return (
     <div className={s.root}>
       <div className={s.details}>
         <SearchBar
-                   handleInputChange={handleInputChange}
-                   handleSearch={handleSearch}
-                   onKeyDown={handleKeyDown}/>
+          handleSearch={handleSearch}
+        />
         <div className={s.block}>
           <CommonButton width={35} height={35} sprId={'current'} title={`${data[locale].current}`}
                         handleButtonClick={() => handleButtonClick('current')}/>
           <CommonButton width={35} height={35} sprId={'hourly'} title={`${data[locale].hourly}`}
                         handleButtonClick={() => handleButtonClick('hourly')}/>
           <CommonButton width={35} height={35} sprId={'5-day'} title={`${data[locale].fiveDay}`}
-                        handleButtonClick={() => handleButtonClick('forecast')}/>
+                        handleButtonClick={() => handleButtonClick('forecast-api')}/>
         </div>
       </div>
       <div className={s.dataContainer}>
         {activeComponent === 'current' && <CurrentWeather weatherData={weatherData}/>}
         {activeComponent === 'hourly' && <HourlyWeather/>}
-        {activeComponent === 'forecast' && <FiveDaysWeather/>}
+        {activeComponent === 'forecast-api' && <FiveDaysWeather/>}
       </div>
     </div>
   )

@@ -1,12 +1,8 @@
-@import './../../../styles/variable';
 @import './../../../styles/mixins';
 
 .root {
   @include container();
-
   display: flex;
-  justify-content: space-between;
-  flex-grow: 3;
 
   .details {
     display: flex;
@@ -17,12 +13,24 @@
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      align-items: center;
-      flex-grow: 1;
+      height: 650px;
+
+      @media screen and (max-width: 830px) {
+        justify-content: flex-start;
+        gap: 25px;
+        height: 200px;
+      }
     }
   }
 
   .dataContainer {
-    @include weatherDtaContainer();
+    color: var(--primary-color);
+    width: 100%;
+  }
+
+  @media screen and (max-width: 830px) {
+    flex-direction: column;
+    gap: 25px;
+
   }
 }

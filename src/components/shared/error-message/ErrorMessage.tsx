@@ -2,7 +2,7 @@ import React from 'react'
 import s from './ErrorMessage.module.scss'
 
 type Props = {
-  message?: string
+  message: string | null
 }
 
 export const ErrorMessage: React.FC<Props> = ({message}) => {

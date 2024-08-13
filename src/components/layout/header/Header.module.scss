@@ -1,14 +1,33 @@
-@import './../../../styles/variable';
 @import './../../../styles/mixins';
 
 .root {
   @include container();
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid var(--primary-color);
+  margin: 10px 0 25px;
   height: 78px;
+  position: relative;
+}
+
+.header {
+  height: 100%;
+  min-height: 78px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid $primary-color;
-  margin: 10px 0 25px;
 }
+
+.errorMessage {
+  padding: 10px 0;
+
+  @media screen and (max-width: 765px) {
+    position: absolute;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 

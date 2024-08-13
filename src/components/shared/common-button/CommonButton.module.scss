@@ -1,19 +1,27 @@
 @import './../../../styles/mixins';
 
 .root {
-    width: 100%;
-    @include button;
+  width: 100%;
+  @include button;
 
-    .flex {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 20px;
-        padding: 0 10px;
-    }
+  .flex {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  @media screen and (max-width: 830px) {
+    max-width: 350px;
+    height: 35px;
+    padding: 5px;
+    justify-content: center;
+  }
 }
+
 .small {
-    @include button;
-    padding: 0 0 2px;
+  @include button;
+  padding: 0 0 2px;
 }
