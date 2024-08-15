@@ -6,16 +6,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 100px;
+  padding: 10px;
 
   .block {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
 
     .space {
-      margin: 10px;
 
       label {
         margin-bottom: 10px;
@@ -96,6 +96,10 @@
     .submitBtn {
       @include button();
       margin-top: 10px;
+      @media screen and (max-width: 765px) {
+        padding: 0 0 2px;
+        margin-top: 0;
+      }
     }
   }
 
@@ -157,11 +161,17 @@
     flex-direction: column;
     gap: 5px;
     justify-content: center;
+    padding-top: 45px;
+    .block {
+      height: max-content;
+    }
+    .responseSuccess,
+    .responseError {
+      width: 100%;
+    }
   }
 
-  .block {
-    align-items: center;
-  }
+
 }
 
 .hide {
